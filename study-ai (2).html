@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; worker-src 'self' blob: https://cdnjs.cloudflare.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study AI – AI For The A Student</title>
+<script>try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttribute("data-theme",_t)}catch(e){}</script>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f7fb;--card:#fff;--tx:#1b1f2a;--mu:#667085;--bd:#e4e7ee;--pr:#4f46e5;--pr2:#eef0ff;--ok:#16a34a;--no:#dc2626}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1117;--card:#181b24;--tx:#e8eaf0;--mu:#9aa1b2;--bd:#2a2f3c;--pr:#818cf8;--pr2:#23264a;--ok:#4ade80;--no:#f87171}}
+:root[data-theme="dark"]{--bg:#0f1117;--card:#181b24;--tx:#e8eaf0;--mu:#9aa1b2;--bd:#2a2f3c;--pr:#818cf8;--pr2:#23264a;--ok:#4ade80;--no:#f87171}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;margin:0}.sub{color:var(--mu);margin:4px 0 20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:16px}
+textarea{width:100%;min-height:110px;border:1px solid var(--bd);border-radius:10px;padding:10px;background:var(--bg);color:var(--tx);font:inherit;resize:vertical}
+.drop{border:2px dashed var(--bd);border-radius:12px;padding:18px;text-align:center;cursor:pointer;color:var(--mu);margin-bottom:10px}
+.drop:hover{border-color:var(--pr)}
+button{font:inherit;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;background:var(--pr);color:#fff;font-weight:600}
+button.g{background:var(--pr2);color:var(--pr)}button:disabled{opacity:.5;cursor:default}
+.tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto}
+.tabs button{background:var(--card);color:var(--tx);border:1px solid var(--bd);white-space:nowrap}
+.tabs button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:12px}
+label{font-size:.85rem;color:var(--mu);display:block}
+input[type=number],select{border:1px solid var(--bd);border-radius:8px;padding:8px;background:var(--bg);color:var(--tx);font:inherit;width:110px}
+.out{white-space:pre-wrap}.out h3{margin:14px 0 4px}.out ul{margin:4px 0 8px;padding-left:20px}
+.fc{perspective:900px;height:220px;cursor:pointer;margin:10px 0}
+.fi{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.f .fi{transform:rotateY(180deg)}
+.fs{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--bd);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:1.15rem;background:var(--pr2);overflow:auto}
+.fs.b{transform:rotateY(180deg);background:var(--card)}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);color:var(--tx);border:1px solid var(--bd);margin:6px 0;font-weight:400}
+.opt.sel{border-color:var(--pr);background:var(--pr2)}.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,transparent)}.opt.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 15%,transparent)}
+.timer{font-weight:700;font-size:1.2rem;color:var(--pr)}.timer.low{color:var(--no)}
+.mu{color:var(--mu);font-size:.9rem}.err{color:var(--no)}.sc{font-size:2.2rem;font-weight:800;color:var(--pr)}
+.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--pr)}
+.cl{max-height:50vh;overflow-y:auto;display:flex;flex-direction:column;gap:8px}.m{padding:10px 14px;border-radius:12px;max-width:92%;white-space:pre-wrap}.m.u{align-self:flex-end;background:var(--pr);color:#fff}.m.a{background:var(--pr2)}.nt{border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:6px 0}.nt b{font-weight:600}.stat{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}.stat div{background:var(--pr2);border-radius:10px;padding:8px 12px;font-size:.85rem}.stat b{display:block;font-size:1.2rem;color:var(--pr)}.sm{padding:4px 10px;font-size:.8rem}
+:root{color-scheme:light dark}:root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}.tag{color:var(--pr);font-weight:700;letter-spacing:.06em;font-size:.85rem;text-transform:uppercase}#th{font-size:1.1rem;padding:6px 10px}
+.ov[hidden]{display:none}.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}.ov label{display:block;margin-top:4px}.ov input,.ov select{width:100%;border:1px solid var(--bd);border-radius:8px;padding:10px;background:var(--bg);color:var(--tx);font:inherit;margin:4px 0 10px}
+#lg,#lg2{width:auto;max-width:150px;padding:6px 8px;font-size:.85rem}
+</style></head><body>
+<div class="ov" id="cfg" hidden><div class="card" style="width:100%;max-width:440px;margin:0;max-height:95vh;overflow:auto"><h2 style="margin:0 0 4px">⚙️ Pengaturan AI</h2><div class="mu" style="margin-bottom:12px">Pilih AI yang dipakai. Bawaan: Mesin Lokal yang berjalan di browser tanpa internet. Penyedia lain hanya dipakai jika kamu memilihnya.</div>
+<label>Penyedia</label><select id="cfp"></select><label>Base URL</label><input id="cfb" autocomplete="off"><label>API key <span id="cfkh"></span></label><input id="cfk" type="password" autocomplete="off"><label>Nama model</label><input id="cfm" autocomplete="off">
+<div id="cfh" class="mu" style="margin-bottom:10px"></div><div class="row" style="margin:0"><button id="cft" class="g">Tes koneksi</button><button id="cfs">Simpan</button><button id="cfx" class="g">Tutup</button></div><div id="cfn" style="margin-top:10px"></div></div></div>
+<div class="w">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div><h1>🎓 Study AI</h1><div class="tag">AI For The A Student</div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><select id="lg" aria-label="Language" title="Language / Bahasa"></select><button class="g" id="ky" style="font-size:.85rem;padding:8px 12px"></button><button class="g" id="th"></button></div></div><p class="sub" style="margin-top:12px">Unggah materi, lalu biarkan AI meringkas, membuat flashcard, dan latihan soal.</p>
+
+<div class="card">
+ <div class="drop" id="drop">📄 Klik untuk unggah file (PDF, DOCX, TXT, MD)<input type="file" id="file" accept=".pdf,.docx,.txt,.md" hidden></div>
+ <textarea id="src" placeholder="…atau tempel teks materi di sini"></textarea>
+ <div class="mu" id="info">Belum ada materi.</div>
+</div>
+
+<div class="tabs"><button class="on" data-t="sum">📝 Ringkasan</button><button data-t="fc">🃏 Flashcard</button><button data-t="qz">✍️ Latihan Soal</button><button data-t="ch">💬 Diskusi</button><button data-t="br">🧠 Memori AI</button></div>
+
+<div class="card" id="sum"><div class="row"><div><label>Panjang ringkasan</label><select id="sl"><option value="singkat">Singkat</option><option value="sedang" selected>Sedang</option><option value="detail">Detail</option></select></div><button id="sb">Buat Ringkasan</button></div><div id="so" class="out mu">Hasil ringkasan muncul di sini.</div></div>
+
+<div class="card" id="fc" hidden><div class="row"><div><label>Jumlah kartu</label><input type="number" id="fn" value="10" min="3" max="40"></div><button id="fb">Buat Flashcard</button></div><div id="fo" class="mu">Flashcard muncul di sini.</div></div>
+
+<div class="card" id="qz" hidden>
+ <div id="qs"><div class="row"><div><label>Jumlah soal</label><input type="number" id="qn" value="10" min="3" max="40"></div><div><label>Waktu (menit)</label><input type="number" id="qt" value="10" min="1" max="180"></div><button id="qb">Mulai Latihan</button></div><div class="mu">AI membuat soal pilihan ganda dari materi, timer berjalan setelah soal siap.</div></div>
+ <div id="qo"></div>
+</div>
+<div class="card" id="ch" hidden><div id="cl" class="cl"><div class="mu">Tanyakan apa saja tentang materi. AI memakai materi tersimpan + memori pengetahuannya, dan mengingat obrolan sebelumnya.</div></div><div class="row" style="margin:12px 0 0;align-items:stretch"><textarea id="ci" style="min-height:48px;flex:1" placeholder="Tulis pertanyaan… (Enter kirim, Shift+Enter baris baru)"></textarea><button id="cs">Kirim</button></div></div>
+<div class="card" id="br" hidden><div id="bo" class="mu">Memuat memori…</div></div>
+<div id="msg" class="err"></div>
+</div>
+
+<script>
+(function(){const b=document.getElementById('th');if(!b)return;const eff=()=>document.documentElement.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+const draw=()=>{const d=eff()==='dark';b.textContent=d?'☀️':'🌙';b.title=d?'Ganti ke mode siang':'Ganti ke mode gelap';b.setAttribute('aria-label',b.title)};draw();
+b.onclick=()=>{const n=eff()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}draw()}})();
+</script>
+<script>/* Pembaca PDF/DOCX dimuat HANYA saat kamu mengunggah file jenis itu: lebih dulu dari folder libs/ (offline), baru CDN jika file lokal tidak ada. */
+function loadJs(srcs){return new Promise((res,rej)=>{const q=srcs.slice();(function next(){if(!q.length)return rej(new Error("library pembaca tidak bisa dimuat (taruh di folder libs/ atau sambungkan internet)"));const s=document.createElement("script");s.src=q.shift();s.onload=res;s.onerror=()=>{s.remove();next()};document.head.appendChild(s)})()})}</script>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let sample=null;
+
+/* AI terpisah: pilih penyedia sendiri. Tidak terhubung ke claude.ai; permintaan langsung dari browser ke penyedia pilihanmu. */
+const PRE={
+ local:{n:'Mesin Lokal (bawaan, tanpa internet)',base:'local',model:'builtin',key:false},
+ ollama:{n:'Ollama (lokal, gratis)',base:'http://localhost:11434/v1',model:'llama3.1',key:false},
+ openai:{n:'OpenAI',base:'https://api.openai.com/v1',model:'gpt-4o-mini',key:true},
+ groq:{n:'Groq',base:'https://api.groq.com/openai/v1',model:'llama-3.3-70b-versatile',key:true},
+ openrouter:{n:'OpenRouter',base:'https://openrouter.ai/api/v1',model:'openai/gpt-4o-mini',key:true},
+ gemini:{n:'Google Gemini',base:'https://generativelanguage.googleapis.com/v1beta/openai',model:'gemini-2.0-flash',key:true},
+ anthropic:{n:'Anthropic (Claude)',base:'https://api.anthropic.com',model:'claude-sonnet-5-5',key:true},
+ custom:{n:'Kustom (kompatibel OpenAI)',base:'',model:'',key:false}};
+const CFGN='study_ai_cfg',SYS_T='Kamu asisten belajar yang membantu. Ikuti instruksi bahasa keluaran dari pengguna; jika tidak ada, jawab dalam Bahasa Indonesia.',SYS_J='Balas HANYA dengan JSON valid, tanpa teks lain dan tanpa blok markdown.';
+function getCfg(){try{const c=JSON.parse(localStorage.getItem(CFGN)||'null');if(c&&c.provider)return c;const k=localStorage.getItem('study_ai_key');if(k)return{provider:'anthropic',base:PRE.anthropic.base,model:PRE.anthropic.model,key:k}}catch(e){}return{provider:'local',base:'local',model:'builtin',key:''}}
+const okCfg=c=>!!(c&&c.base&&c.model&&(c.key||!(PRE[c.provider]||{}).key));
+function updKey(){const b=$('ky'),c=getCfg();if(b)b.textContent=okCfg(c)?'⚙️ '+PRE[c.provider].n.replace(/ \(.*\)/,''):'⚙️ Atur AI'}
+$('cfp').innerHTML=Object.entries(PRE).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
+const HINT={local:'Berjalan sepenuhnya di browser: tanpa internet, tanpa API key, dan tanpa mengirim data ke mana pun. Kualitasnya sederhana karena berbasis aturan (bukan model bahasa besar): ringkasan mengambil kalimat penting, soal berbentuk melengkapi kalimat dan definisi, diskusi mengutip isi materi. Tidak bisa menerjemahkan antarmuka atau menjawab di luar materi.',ollama:'Pasang Ollama, jalankan "ollama pull llama3.1", lalu mulai Ollama dengan OLLAMA_ORIGINS=* agar bisa diakses dari browser. Tanpa API key dan 100% berjalan di komputermu.',anthropic:'Isi API key dari console.anthropic.com.',custom:'Isi Base URL endpoint yang kompatibel dengan OpenAI (berakhiran /v1), misalnya LM Studio, vLLM, atau server milikmu sendiri.'};
+function hint(){const p=$('cfp').value;$('cfh').textContent=HINT[p]||'Buat API key di dashboard penyedia. Key disimpan hanya di browser ini. Jika penyedia memblokir akses dari browser (CORS), pakai versi server.';$('cfkh').textContent=PRE[p].key?'':'(opsional)'}
+$('cfp').onchange=()=>{const p=PRE[$('cfp').value];$('cfb').value=p.base;$('cfm').value=p.model;$('cfk').value='';hint()}; /* ganti penyedia: kosongkan key supaya key lama tidak terkirim ke penyedia lain */
+function openCfg(){const c=getCfg()||{provider:'ollama',base:PRE.ollama.base,model:PRE.ollama.model,key:''};$('cfp').value=c.provider;$('cfb').value=c.base;$('cfm').value=c.model;$('cfk').value=c.key||'';$('cfn').textContent='';hint();$('cfg').hidden=false}
+const formCfg=()=>({provider:$('cfp').value,base:$('cfb').value.trim(),model:$('cfm').value.trim(),key:$('cfk').value.trim()});
+$('ky').onclick=openCfg;$('cfx').onclick=()=>{$('cfg').hidden=true};
+$('cfs').onclick=()=>{const c=formCfg(),n=$('cfn');if(!okCfg(c)){n.className='err';n.textContent='Lengkapi Base URL, nama model, dan API key (jika diperlukan).';return}try{localStorage.setItem(CFGN,JSON.stringify(c))}catch(e){}$('cfg').hidden=true;updKey();if(window.onAiReady)onAiReady()};
+$('cft').onclick=async()=>{const c=formCfg(),n=$('cfn');n.className='mu';if(!okCfg(c)){n.className='err';n.textContent='Lengkapi isian dulu.';return}n.textContent='Menguji…';
+ try{const r=await aiCall('Balas hanya dengan kata: OK',{cfg:c});n.textContent='✓ Terhubung. Balasan model: '+r.text.trim().slice(0,60)}catch(e){n.className='err';n.textContent=e.message}};
+const stripThink=t=>t.replace(/<think>[\s\S]*?(<\/think>|$)/g,'');
+async function aiCall(input,opts={}){
+ const c=opts.cfg||getCfg();if(!okCfg(c)){openCfg();throw new Error('Atur penyedia AI dulu (tombol ⚙️ di kanan atas).')}
+ if(c.provider==='local')return localCall(input,opts);
+ const an=c.provider==='anthropic',base=c.base.replace(/\/+$/,''),sys=opts.json?SYS_J:SYS_T,mt=opts.json?8000:4096;let r;
+ try{r=an?await fetch(base+'/v1/messages',{method:'POST',signal:opts.signal,headers:{'content-type':'application/json','x-api-key':c.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:c.model,max_tokens:mt,stream:true,system:sys,messages:[{role:'user',content:input}]})})
+  :await fetch(base+'/chat/completions',{method:'POST',signal:opts.signal,headers:{'content-type':'application/json',...(c.key?{authorization:'Bearer '+c.key}:{})},body:JSON.stringify({model:c.model,max_tokens:mt,stream:true,messages:[{role:'system',content:sys},{role:'user',content:input}]})})}
+ catch(e){if(e.name==='AbortError')throw e;throw new Error('Tidak bisa terhubung ke '+base+'. Periksa Base URL, koneksi internet, atau pengaturan CORS penyedia.')}
+ if(!r.ok){let m='Error '+r.status;try{const j=await r.json();m=(j.error&&(j.error.message||j.error))||j.message||m}catch(e){}
+  const er=new Error(r.status===401||r.status===403?'API key tidak valid atau tidak punya akses.':r.status===404?'Model atau Base URL tidak ditemukan (periksa nama model & Base URL).':String(m));er.code=r.status===429?'rate_limited':'error';throw er}
+ const rd=r.body.getReader(),dc=new TextDecoder();let text='',buf='';
+ for(;;){const {done,value}=await rd.read();if(done)break;buf+=dc.decode(value,{stream:true});const ls=buf.split('\n');buf=ls.pop();
+  for(const l of ls){if(!l.startsWith('data:'))continue;const pl=l.slice(5).trim();if(!pl||pl==='[DONE]')continue;
+   try{const ev=JSON.parse(pl);const d=an?(ev.type==='content_block_delta'&&ev.delta&&ev.delta.type==='text_delta'?ev.delta.text:''):((ev.choices&&ev.choices[0]&&ev.choices[0].delta&&ev.choices[0].delta.content)||'');
+    if(d){text+=d;if(opts.onText)opts.onText({text:stripThink(text)})}}catch(e){}}}
+ return{text:stripThink(text),truncated:false}}
+sample=(input,opts)=>aiCall(input,opts);
+sample.json=async(input,opts)=>{let last;for(let i=0;i<2;i++){const r=await aiCall(input,{...opts,onText:null,json:true});const t=r.text.replace(/```json|```/g,'').trim();
+ try{const a=t.search(/[\[{]/),b=Math.max(t.lastIndexOf(']'),t.lastIndexOf('}'));return JSON.parse(t.slice(a,b+1))}catch(e){last=e}}
+ throw new Error('Model tidak mengembalikan JSON yang valid. Coba lagi atau pakai model yang lebih besar.')};
+updKey();
+
+const MAX=60000;
+function text(){return $('src').value.trim().slice(0,MAX)}
+function upd(){const n=$('src').value.trim().length;$('info').textContent=n?`${n.toLocaleString('id')} karakter materi${n>MAX?` (hanya ${MAX.toLocaleString('id')} pertama dipakai)`:''}.`:'Belum ada materi.'}
+$('src').oninput=upd;
+$('drop').onclick=()=>$('file').click();
+$('file').onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;$('info').textContent='Membaca file…';$('msg').textContent='';
+ try{let t='';const n=f.name.toLowerCase();
+  if(n.endsWith('.pdf')){if(typeof pdfjsLib==='undefined'){await loadJs(['libs/pdf.min.js','https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js']);window.__localPdf=!!document.querySelector('script[src="libs/pdf.min.js"]')}pdfjsLib.GlobalWorkerOptions.workerSrc=window.__localPdf?'libs/pdf.worker.min.js':'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+   const p=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;
+   for(let i=1;i<=p.numPages&&t.length<MAX;i++){const c=await(await p.getPage(i)).getTextContent();t+=c.items.map(x=>x.str).join(' ')+'\n'}}
+  else if(n.endsWith('.docx')){if(typeof mammoth==='undefined')await loadJs(['libs/mammoth.browser.min.js','https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js']);t=(await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()})).value}
+  else t=await f.text();
+  if(!t.trim())throw new Error('Tidak ada teks yang bisa dibaca (mungkin PDF hasil scan).');
+  $('src').value=t;fileName=f.name;upd();$('drop').firstChild.textContent='✅ '+f.name+' (klik untuk ganti)'
+ }catch(err){$('msg').textContent='Gagal membaca file: '+err.message;upd()}
+};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+ ['sum','fc','qz','ch','br'].forEach(id=>$(id).hidden=id!==b.dataset.t)});
+function ready(){$('msg').textContent='';if(!sample){$('msg').textContent='Fitur AI tidak tersedia.';return false}
+ if(text().length<50){$('msg').textContent='Unggah file atau tempel materi (minimal 50 karakter) dulu.';return false}ensureDoc();return true}
+function mdLite(s){return esc(s).replace(/^### (.*)$/gm,'<h3>$1</h3>').replace(/^## (.*)$/gm,'<h3>$1</h3>').replace(/^# (.*)$/gm,'<h3>$1</h3>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/^[-*] (.*)$/gm,'• $1')}
+async function run(btn,fn){const o=btn.textContent;btn.disabled=true;btn.textContent='AI bekerja…';try{await fn()}catch(e){$('msg').textContent='Gagal: '+(e.message||e.code||'coba lagi')+(e.code==='rate_limited'?' (terlalu sering, tunggu sebentar)':'')}btn.disabled=false;btn.textContent=o}
+
+// Ringkasan
+$('sb').onclick=()=>{if(ready())run($('sb'),async()=>{
+ const L={singkat:'sangat ringkas (maks ~150 kata)',sedang:'sedang (~300 kata)',detail:'detail dan lengkap (~600 kata)'}[$('sl').value];
+ $('so').className='out';$('so').textContent='';
+ await sample(`Kamu tutor yang andal. Ringkas materi berikut dalam Bahasa Indonesia, panjang: ${L}. Format: judul "## " per topik utama, poin-poin "- ", istilah penting dengan **tebal**, akhiri dengan "## Poin Kunci" berisi 3-5 hal terpenting. Hanya gunakan isi materi.\n\nMATERI:\n${text()}`,{cache:false,onText:({text})=>{$('so').innerHTML=mdLite(text)}})})};
+
+// Flashcard
+let cards=[],ci=0;
+$('fb').onclick=()=>{if(ready())run($('fb'),async()=>{
+ const n=Math.min(40,Math.max(3,+$('fn').value||10));
+ cards=await sample.json(`Buat tepat ${n} flashcard Bahasa Indonesia dari materi di bawah. Depan: pertanyaan/istilah singkat. Belakang: jawaban jelas dan padat (1-3 kalimat). Cakup konsep terpenting. Balas HANYA JSON array: [{"front":"...","back":"..."}]\n\nMATERI:\n${text()}`,{cache:false});
+ if(!Array.isArray(cards)||!cards.length)throw new Error('format tidak valid');ci=0;showCard()})};
+function showCard(){const c=cards[ci];$('fo').className='';$('fo').innerHTML=`<div class="mu">Kartu ${ci+1} / ${cards.length}</div><div class="bar"><i style="width:${(ci+1)/cards.length*100}%"></i></div>
+<div class="fc" id="cd"><div class="fi"><div class="fs">${esc(c.front)}</div><div class="fs b">${esc(c.back)}</div></div></div>
+<div class="mu" style="text-align:center">Klik kartu untuk membalik</div>
+<div class="row" style="justify-content:center;margin-top:10px"><button class="g" id="pv" ${ci?'':'disabled'}>← Sebelumnya</button><button class="g" id="sh">🔀 Acak</button><button id="nx" ${ci<cards.length-1?'':'disabled'}>Berikutnya →</button></div>`;
+ $('cd').onclick=()=>$('cd').classList.toggle('f');$('pv').onclick=()=>{ci--;showCard()};$('nx').onclick=()=>{ci++;showCard()};
+ $('sh').onclick=()=>{cards.sort(()=>Math.random()-.5);ci=0;showCard()}}
+
+// Latihan soal
+let qs=[],ans=[],qi=0,left=0,tmr=null,done=false;
+$('qb').onclick=()=>{if(ready())run($('qb'),async()=>{
+ const n=Math.min(40,Math.max(3,+$('qn').value||10)),m=Math.min(180,Math.max(1,+$('qt').value||10));
+ qs=await sample.json(`Buat tepat ${n} soal pilihan ganda Bahasa Indonesia dari materi di bawah, tingkat kesulitan bervariasi. Tiap soal 4 opsi, satu jawaban benar, dan penjelasan singkat. ${memHint()} Balas HANYA JSON array: [{"q":"...","options":["A","B","C","D"],"answer":0,"explain":"..."}] ("answer" = indeks 0-3 opsi benar; acak posisinya).\n\nMATERI:\n${text()}`,{cache:false});
+ if(!Array.isArray(qs)||!qs.length)throw new Error('format tidak valid');
+ ans=qs.map(()=>-1);qi=0;left=m*60;done=false;$('qs').hidden=true;clearInterval(tmr);
+ tmr=setInterval(()=>{left--;if(left<=0){finish()}else tick()},1000);drawQ()})};
+const fmt=s=>`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+function tick(){const t=$('tm');if(t){t.textContent='⏱ '+fmt(left);t.classList.toggle('low',left<60)}}
+function drawQ(){const q=qs[qi];$('qo').innerHTML=`<div class="row" style="justify-content:space-between;align-items:center"><span class="mu">Soal ${qi+1} / ${qs.length} · terjawab ${ans.filter(a=>a>=0).length}</span><span class="timer" id="tm">⏱ ${fmt(left)}</span></div><div class="bar"><i style="width:${(qi+1)/qs.length*100}%"></i></div>
+<p data-nt><b>${esc(q.q)}</b></p>${q.options.map((o,i)=>`<button class="opt ${ans[qi]===i?'sel':''}" data-i="${i}">${'ABCD'[i]}. ${esc(o)}</button>`).join('')}
+<div class="row" style="margin-top:12px"><button class="g" id="qp" ${qi?'':'disabled'}>← Sebelumnya</button>${qi<qs.length-1?'<button id="qx">Berikutnya →</button>':''}<button class="g" id="qf" style="margin-left:auto">Selesai & Nilai</button></div>`;
+ document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[qi]=+b.dataset.i;drawQ()});
+ $('qp').onclick=()=>{qi--;drawQ()};if($('qx'))$('qx').onclick=()=>{qi++;drawQ()};
+ $('qf').onclick=()=>{const u=ans.filter(a=>a<0).length;if(!u||confirm(`Masih ${u} soal belum dijawab. Selesaikan sekarang?`))finish()}}
+function finish(){if(done)return;done=true;clearInterval(tmr);learnQuiz().catch(()=>{});const ok=qs.filter((q,i)=>ans[i]===q.answer).length,p=Math.round(ok/qs.length*100);
+ $('qo').innerHTML=`<div style="text-align:center"><div class="sc">${p}</div><div>${ok} benar dari ${qs.length} soal${left<=0?' · waktu habis':''}</div></div><hr style="border:0;border-top:1px solid var(--bd);margin:14px 0">`+
+ qs.map((q,i)=>`<div style="margin-bottom:18px"><p data-nt><b>${i+1}. ${esc(q.q)}</b></p>${q.options.map((o,j)=>`<div class="opt ${j===q.answer?'ok':ans[i]===j?'no':''}" style="padding:8px 12px;border-radius:10px">${'ABCD'[j]}. ${esc(o)}${j===q.answer?' ✓':ans[i]===j?' ✗ (jawabanmu)':''}</div>`).join('')}<div class="mu">${ans[i]<0?'Tidak dijawab. ':''}💡 <span data-nt>${esc(q.explain||'')}</span></div></div>`).join('')+
+ `<button id="rs">Latihan Lagi</button>`;$('rs').onclick=()=>{$('qo').innerHTML='';$('qs').hidden=false}}
+</script>
+<script>
+/* ===== Memori & pembelajaran ===== */
+const LIMIT=1073741824;let fileName='',curDoc='',KB=null,hist=[],userMsgs=0,busy=false;
+const DB=new Promise(res=>{try{const r=indexedDB.open('belajarai',1);r.onupgradeneeded=()=>{const d=r.result;['docs','logs','kb'].forEach(s=>d.createObjectStore(s,{keyPath:'id'}))};r.onsuccess=()=>res(r.result);r.onerror=()=>res(null)}catch(e){res(null)}});
+const tx=async(s,m,f)=>{const d=await DB;if(!d)return null;return new Promise(r=>{try{const t=d.transaction(s,m),o=f(t.objectStore(s));t.oncomplete=()=>r(o&&o.result!==undefined?o.result:true);t.onerror=t.onabort=()=>r(null)}catch(e){r(null)}})};
+const put=(s,v)=>tx(s,'readwrite',o=>o.put(v)),all=s=>tx(s,'readonly',o=>o.getAll()).then(x=>Array.isArray(x)?x:[]),del=(s,k)=>tx(s,'readwrite',o=>o.delete(k)),get=(s,k)=>tx(s,'readonly',o=>o.get(k)).then(x=>x&&x!==true?x:null),clr=s=>tx(s,'readwrite',o=>o.clear());
+const norm=s=>String(s||'').trim().toLowerCase(),saveKB=()=>put('kb',KB);
+const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))>>>0;return h+'_'+s.length};
+const fmtB=n=>n>1e9?(n/1073741824).toFixed(2)+' GB':n>1e6?(n/1048576).toFixed(1)+' MB':(n/1024).toFixed(1)+' KB';
+const words=s=>norm(s).split(/[^\p{L}\p{N}]+/u).filter(w=>w.length>2);
+function mergeNotes(arr){for(const n of arr||[]){if(!n||!n.topic)continue;let k=KB.notes.find(x=>norm(x.topic)===norm(n.topic));if(!k){k={topic:String(n.topic).slice(0,80),facts:[],mastery:50,seen:0,ts:0};KB.notes.push(k)}
+ for(const f of n.facts||[]){const s=String(f).slice(0,300);if(!k.facts.some(x=>norm(x)===norm(s)))k.facts.push(s)}
+ k.facts=k.facts.slice(-25);
+ if(typeof n.correct==='number'&&n.total)k.mastery=Math.round(k.mastery*.6+n.correct/n.total*100*.4);else if(typeof n.mastery==='number')k.mastery=Math.round(k.mastery*.7+n.mastery*.3);
+ k.seen++;k.ts=Date.now()}}
+function addPatterns(a){for(const p of a||[]){const s=String(p).slice(0,200);if(s&&!KB.patterns.some(x=>norm(x)===norm(s)))KB.patterns.push(s)}KB.patterns=KB.patterns.slice(-40)}
+async function usage(){const [d,l]=await Promise.all([all('docs'),all('logs')]);return{docs:d,logs:l,bytes:d.reduce((a,x)=>a+x.size,0)+l.reduce((a,x)=>a+x.size,0)}}
+async function digest(d){if(!sample)return;const r=await sample.json(`Dari materi berikut, ekstrak 4-10 topik utama beserta fakta/konsep kunci (maks 5 fakta per topik, kalimat padat, Bahasa Indonesia). Balas HANYA JSON: {"notes":[{"topic":"...","facts":["..."]}]}\n\nMATERI (${d.name}):\n${d.text.slice(0,30000)}`,{cache:false});mergeNotes((r&&r.notes)||[]);d.digested=true;await put('docs',d);await saveKB();refreshBrain()}
+async function enforce(){const u=await usage();if(u.bytes<=LIMIT)return;
+ for(const d of u.docs.filter(d=>!d.digested))await digest(d).catch(()=>{});
+ let b=u.bytes;const items=[...(await all('docs')).filter(x=>x.digested).map(x=>['docs',x]),...u.logs.map(x=>['logs',x])].sort((a,c)=>a[1].ts-c[1].ts);
+ for(const [s,x] of items){if(b<=LIMIT*.9)break;await del(s,x.id);b-=x.size}
+ KB.purges=(KB.purges||0)+1;await saveKB()}
+async function ensureDoc(){const t=$('src').value.trim();if(t.length<50||!KB)return;const id=hash(t);if(curDoc===id)return;curDoc=id;
+ if(await get('docs',id))return;const d={id,name:fileName||t.slice(0,40).replace(/\s+/g,' ')+'…',text:t,size:t.length*2,ts:Date.now(),digested:false};await put('docs',d);digest(d).catch(()=>{});await enforce();refreshBrain()}
+$('src').addEventListener('input',()=>{fileName=''});
+function topK(q,items,n){const qw=new Set(words(q));return items.map(it=>{const w=words(it.t);let s=0;for(const x of w)if(qw.has(x))s++;return{...it,s:s/Math.sqrt(w.length+20)}}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,n)}
+async function retrieve(q){const docs=await all('docs'),cur=$('src').value.trim(),ch=[];const add=(name,t)=>{for(let i=0;i<t.length;i+=1500)ch.push({name,t:t.slice(i,i+1800)})};
+ if(cur)add('Materi aktif',cur);for(const d of docs)if(d.id!==curDoc)add(d.name,d.text);
+ let r=topK(q,ch,6);if(!r.length&&cur)r=[{name:'Materi aktif',t:cur.slice(0,4000)}];
+ const kn=topK(q,KB.notes.map(n=>({t:n.topic+' '+n.facts.join(' '),n})),4).map(x=>`- ${x.n.topic} (penguasaan ${x.n.mastery}%): ${x.n.facts.slice(-5).join('; ')}`);
+ return{ctx:r.map((x,i)=>`[${i+1}] (${x.name}) ${x.t}`).join('\n\n'),kn}}
+function addMsg(r,t){const d=document.createElement('div');d.className='m '+r;d.innerHTML=r==='u'?esc(t):mdLite(t);$('cl').appendChild(d);d.scrollIntoView({block:'nearest'});return d}
+async function send(){const q=$('ci').value.trim();if(!q||busy)return;if(!sample){$('msg').textContent='Fitur AI tidak tersedia.';return}if(!KB)return;$('msg').textContent='';busy=true;$('ci').value='';ensureDoc();
+ addMsg('u',q);const el=addMsg('a','…');
+ try{const {ctx,kn}=await retrieve(q);const h=hist.slice(-8).map(m=>`${m.r==='u'?'Pelajar':'AI'}: ${m.c}`).join('\n');let full='';
+ const res=await sample(`Kamu tutor pribadi yang mengingat riwayat belajar pelajar. Jawab dalam Bahasa Indonesia, utamakan isi CUPLIKAN MATERI dan sebut sumbernya seperti [1]. Jika jawaban tidak ada di materi, katakan jujur lalu beri penjelasan umum berlabel "(di luar materi)". Sesuaikan kedalaman penjelasan dengan penguasaan pelajar pada MEMORI.\n\nMEMORI PENGETAHUAN:\n${kn.join('\n')||'(kosong)'}\n\nPOLA BELAJAR PELAJAR:\n${KB.patterns.slice(-8).join('\n')||'-'}\n\nCUPLIKAN MATERI:\n${ctx||'(belum ada materi)'}\n\nRIWAYAT:\n${h}\n\nPelajar: ${q}`,{cache:false,onText:({text})=>{full=text;el.innerHTML=mdLite(text)}});
+  full=full||res.text;hist.push({r:'u',c:q},{r:'a',c:full});hist=hist.slice(-40);userMsgs++;const ts=Date.now();await put('logs',{id:'c'+ts,ts,kind:'chat',q,a:full,size:(q.length+full.length)*2});
+  if(userMsgs%5===0)reflect().catch(()=>{});
+ }catch(e){el.textContent='Gagal: '+(e.message||e.code||'coba lagi')}
+ busy=false;enforce().then(refreshBrain)}
+$('cs').onclick=send;$('ci').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}};
+async function reflect(){const h=hist.slice(-10).map(m=>`${m.r==='u'?'Pelajar':'AI'}: ${m.c.slice(0,600)}`).join('\n');
+ const r=await sample.json(`Kamu mengevaluasi diri sebagai tutor. Dari percakapan berikut, tulis topik yang dibahas beserta fakta baru/koreksi ("mastery" 0-100 = perkiraan pemahaman pelajar), dan pola pertanyaan/kebiasaan belajar pelajar. Balas HANYA JSON: {"notes":[{"topic":"","facts":[""],"mastery":60}],"patterns":[""]}\n\n${h}`,{cache:false});
+ mergeNotes(r.notes);addPatterns(r.patterns);await afterLearn()}
+async function learnQuiz(){if(!sample||!KB)return;const det=qs.map((q,i)=>`${ans[i]===q.answer?'BENAR':ans[i]<0?'KOSONG':'SALAH'} | ${q.q} | jawaban benar: ${q.options[q.answer]}`).join('\n');
+ await put('logs',{id:'q'+Date.now(),ts:Date.now(),kind:'quiz',size:det.length*2});
+ const r=await sample.json(`Analisis hasil latihan berikut. Kelompokkan per topik (correct/total), tulis fakta kunci dari soal yang salah, lalu temukan pola soal (jenis: definisi, hitungan, perbandingan, dll.) dan pola kesalahan pelajar. Balas HANYA JSON: {"notes":[{"topic":"","correct":0,"total":0,"facts":[""]}],"patterns":[""]}\n\n${det}`,{cache:false});
+ mergeNotes(r.notes);addPatterns(r.patterns);await afterLearn()}
+async function afterLearn(){KB.events++;await saveKB();if(KB.events%5===0)await selfEval().catch(()=>{});refreshBrain()}
+async function selfEval(){if(!sample||!KB.notes.length)return;
+ const r=await sample.json(`Evaluasi basis pengetahuan belajar berikut. Gabungkan topik duplikat/mirip, buang fakta yang salah atau kontradiktif, tulis ringkasan pemahaman pelajar + 3 saran belajar. Balas HANYA JSON: {"notes":[{"topic":"","facts":[""],"mastery":50}],"summary":"","advice":[""],"patterns":[""]} (maks 80 topik, maks 12 fakta per topik).\n\nDATA:\n${JSON.stringify({notes:KB.notes.slice(-150).map(n=>({topic:n.topic,facts:n.facts.slice(-12),mastery:n.mastery})),patterns:KB.patterns})}`,{cache:false});
+ if(r&&Array.isArray(r.notes)&&r.notes.length>=Math.min(KB.notes.length,80)*.5){const m=new Map(KB.notes.map(n=>[norm(n.topic),n.mastery]));
+  KB.notes=r.notes.slice(0,80).map(n=>({topic:String(n.topic).slice(0,80),facts:(n.facts||[]).map(f=>String(f).slice(0,300)).slice(-12),mastery:m.has(norm(n.topic))?m.get(norm(n.topic)):Math.round(+n.mastery||50),seen:1,ts:Date.now()}))}
+ addPatterns(r&&r.patterns);KB.evals.push({ts:Date.now(),summary:String((r&&r.summary)||'').slice(0,600),advice:((r&&r.advice)||[]).slice(0,3).map(a=>String(a).slice(0,200))});KB.evals=KB.evals.slice(-30);KB.lastEval=Date.now();await saveKB()}
+function memHint(){if(!KB)return'';const w=KB.notes.filter(n=>n.mastery<60).sort((a,b)=>a.mastery-b.mastery).slice(0,5).map(n=>n.topic),p=KB.patterns.slice(-5);if(!w.length&&!p.length)return'';return`Sesuaikan dengan riwayat pelajar: perbanyak soal pada topik lemah (${w.join(', ')||'-'}) dan tiru pola soal yang pernah muncul (${p.join('; ')||'-'}).`}
+async function refreshBrain(){if(!KB)return;const u=await usage(),pct=Math.min(100,u.bytes/LIMIT*100),avg=KB.notes.length?Math.round(KB.notes.reduce((a,n)=>a+n.mastery,0)/KB.notes.length):0,ev=KB.evals[KB.evals.length-1];
+ $('bo').className='';$('bo').innerHTML=`<h3 style="margin:0 0 6px">🧠 Memori & Pembelajaran AI</h3><div class="mu">Memori mentah (materi & obrolan): <b>${fmtB(u.bytes)}</b> / 1 GB</div><div class="bar"><i style="width:${Math.max(pct,.5)}%"></i></div>
+ <div class="mu">Jika melewati 1 GB, materi & obrolan terlama dibersihkan, sedangkan pengetahuan hasil belajar tetap tersimpan dan terus berkembang.</div>
+ <div class="stat"><div><b>${KB.notes.length}</b>topik dikuasai</div><div><b>${avg}%</b>rata-rata penguasaan</div><div><b>${KB.patterns.length}</b>pola soal</div><div><b>${KB.evals.length}</b>evaluasi diri</div><div><b>${KB.purges||0}</b>pembersihan</div></div>
+ <div class="row"><button data-a="eval">🔄 Evaluasi diri sekarang</button><button class="g" data-a="purge">Bersihkan memori mentah</button><button class="g" data-a="reset">Reset semua</button></div>
+ ${ev?`<div class="nt"><b>Evaluasi terakhir (${new Date(ev.ts).toLocaleString('id')})</b><br>${esc(ev.summary)}<ul>${ev.advice.map(a=>'<li>'+esc(a)+'</li>').join('')}</ul></div>`:''}
+ ${KB.patterns.length?`<h3>Pola soal & kebiasaan yang dikenali</h3><ul>${KB.patterns.slice(-10).map(p=>'<li data-nt>'+esc(p)+'</li>').join('')}</ul>`:''}
+ ${KB.notes.length?`<h3>Pengetahuan (terlemah dulu)</h3>${[...KB.notes].sort((a,b)=>a.mastery-b.mastery).slice(0,25).map(n=>`<div class="nt"><b>${esc(n.topic)}</b> <span class="mu">· ${n.mastery}%</span><div class="bar"><i style="width:${n.mastery}%"></i></div><div class="mu">${esc(n.facts.slice(-3).join(' • '))}</div></div>`).join('')}`:'<p>Belum ada pengetahuan. Unggah materi, diskusi, atau kerjakan latihan soal agar AI mulai belajar.</p>'}
+ <h3>Materi tersimpan (${u.docs.length})</h3>${u.docs.sort((a,b)=>b.ts-a.ts).map(d=>`<div class="nt row" style="justify-content:space-between;align-items:center;margin:6px 0"><span>${esc(d.name)} <span class="mu">${fmtB(d.size)}${d.digested?' · ✓ dipelajari':''}</span></span><span><button class="g sm" data-a="use" data-id="${esc(d.id)}">Pakai</button> <button class="g sm" data-a="del" data-id="${esc(d.id)}">Hapus</button></span></div>`).join('')||'<p class="mu">Belum ada.</p>'}
+ <p class="mu">Catatan: AI tidak mengubah model aslinya; "belajar" berarti pengetahuan, pola, dan evaluasi disimpan di browser ini (IndexedDB) lalu dipakai di setiap jawaban dan soal. Data tidak dibagikan dan hilang jika data situs dihapus.</p>`}
+$('bo').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const a=b.dataset.a;
+ if(a==='eval'){await run(b,async()=>{if(!sample)throw new Error('AI tidak tersedia');await selfEval();await refreshBrain()})}
+ else if(a==='purge'){if(confirm('Hapus materi & obrolan yang sudah dipelajari? Pengetahuan tetap disimpan.')){for(const d of (await all('docs')).filter(x=>x.digested))await del('docs',d.id);await clr('logs');curDoc='';await refreshBrain()}}
+ else if(a==='reset'){if(confirm('Hapus SEMUA memori termasuk pengetahuan AI?')){await clr('docs');await clr('logs');await clr('kb');await loadKB();hist=[];$('cl').innerHTML='';await refreshBrain()}}
+ else if(a==='use'){const d=await get('docs',b.dataset.id);if(d){$('src').value=d.text;fileName=d.name;curDoc=d.id;upd();$('info').textContent+=' (dari memori: '+d.name+')'}}
+ else if(a==='del'){await del('docs',b.dataset.id);if(curDoc===b.dataset.id)curDoc='';await refreshBrain()}};
+async function loadKB(){KB=(await get('kb','kb'))||{id:'kb',notes:[],patterns:[],evals:[],events:0,lastEval:0,purges:0}}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.t==='br')refreshBrain()}));
+(async()=>{try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+ await loadKB();const lg=(await all('logs')).filter(l=>l.kind==='chat').sort((a,b)=>a.ts-b.ts).slice(-3);
+ for(const l of lg){hist.push({r:'u',c:l.q},{r:'a',c:l.a});addMsg('u',l.q);addMsg('a',l.a)}refreshBrain()})();
+</script><script>
+/* ===== Mesin AI lokal (bawaan): berjalan 100% di browser, tanpa internet, tanpa API key ===== */
+const LocalAI=(()=>{
+const SW_ID=new Set('yang dan di ke dari dalam untuk pada dengan adalah ini itu atau juga akan dapat bisa oleh sebagai karena sehingga serta antara tidak lebih telah sudah masih saat ketika jika maka agar bahwa para suatu setiap tersebut merupakan yaitu ialah hal secara lain lainnya mereka kita kami saya anda dia ia nya pun lah kah sangat banyak semua beberapa sebuah seorang jadi namun tetapi sedangkan setelah sebelum selama hingga sampai harus mampu melalui terhadap tentang bagi ada adanya menjadi apa siapa mengapa kenapa bagaimana dimana kapan berapa'.split(' '));
+const SW_EN=new Set('the an and or of to in on at for with by from as is are was were be been being this that these those it its into than then so such not no can could may might will would should have has had do does did also which who whom whose what when where why how their there they them he she we you our your his her but if else while about over under between during after before more most other some any each both either neither'.split(' '));
+const SW=new Set([...SW_ID,...SW_EN]);
+const rnd=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const toks=s=>s.toLowerCase().match(/[\p{L}\p{N}]+/gu)||[];
+const content=s=>toks(s).filter(w=>w.length>2&&!SW.has(w)&&!/^\d+$/.test(w));
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+function lang(t){let i=0,e=0;for(const w of toks(t).slice(0,800)){if(SW_ID.has(w))i++;else if(SW_EN.has(w))e++}return e>i*1.2?'en':'id'}
+function sentences(text){const out=[];
+ for(const para of text.replace(/\r/g,'').replace(/[ \t]+/g,' ').split(/\n+/)){const p=para.trim();if(!p)continue;
+  for(let s of p.split(/(?<=[.!?。！？])\s+(?=[\p{Lu}\p{N}"'(\[])/u)){s=s.trim().replace(/^[-•*\d.)\s]+(?=\p{L})/u,'');if(s.length>=20&&s.length<=420&&/\p{L}{3}/u.test(s))out.push(s)}}
+ return out}
+const DEF=/^(?<t>[^,;:()]{2,70}?)\s+(?<v>adalah|merupakan|ialah|yaitu|disebut|dinamakan|dikenal sebagai|berarti|is|are|refers to|means|is called|are called|is known as)\s+(?<d>.{12,})$/iu;
+function defOf(s){const m=s.match(DEF);if(!m)return null;const t=m.groups.t.trim().replace(/[.]$/,'');if(t.split(/\s+/).length>6)return null;return{term:t,def:m.groups.d.trim().replace(/[.]$/,''),sent:s}}
+const short=d=>{d=cap(d);if(d.length<=110)return d;const c=d.slice(0,110);return c.slice(0,c.lastIndexOf(' ')>40?c.lastIndexOf(' '):110)+'…'};
+function analyze(text){
+ const sents=sentences(text),df=new Map(),tf=new Map(),stoks=sents.map(content);
+ stoks.forEach(ts=>{new Set(ts).forEach(w=>df.set(w,(df.get(w)||0)+1));ts.forEach(w=>tf.set(w,(tf.get(w)||0)+1))});
+ const N=Math.max(sents.length,1),w=new Map();for(const [k,f] of tf)w.set(k,f*Math.log(1+N/df.get(k)));
+ if(lang(text)==='id')for(const [k,v] of w)if(/^(me|mem|men|meng|meny|ber|ter|di|ke)[a-z]{4,}$/.test(k)||/kan$/.test(k))w.set(k,v*.4); /* kata kerja kurang cocok jadi istilah */
+ const forms=new Map();for(const s of sents)for(const m of s.matchAll(/[\p{L}\p{N}][\p{L}\p{N}'-]*/gu)){const lw=m[0].toLowerCase();if(!w.has(lw))continue;const o=forms.get(lw)||{};o[m[0]]=(o[m[0]]||0)+1;forms.set(lw,o)}
+ const form=lw=>{const o=forms.get(lw);return o?Object.entries(o).sort((a,b)=>b[1]-a[1])[0][0]:lw};
+ const score=sents.map((s,i)=>{const u=new Set(stoks[i]);let t=0;u.forEach(x=>t+=w.get(x)||0);let v=t/Math.sqrt(u.size+3);if(i<3)v*=1.25;if(defOf(s))v*=1.15;if(s.length<40)v*=.7;return v});
+ const phrases=new Map();for(const s of sents){const re=/(?<![\p{L}])(\p{Lu}[\p{L}\p{N}-]+(?:\s+\p{Lu}[\p{L}\p{N}-]+)+)/gu;let m;while((m=re.exec(s)))if(m.index>0)phrases.set(m[1],(phrases.get(m[1])||0)+1)}
+ const terms=[...w.entries()].sort((a,b)=>b[1]-a[1]).map(([k])=>k).filter(k=>k.length>3);
+ return{sents,stoks,w,form,score,phrases,terms,N}}
+function pickBlank(s,an){const re=/[\p{L}\p{N}][\p{L}\p{N}'-]*/gu,T=[];let m;while((m=re.exec(s)))T.push({t:m[0],i:m.index,e:m.index+m[0].length});
+ let best=null;T.forEach((o,ix)=>{const lw=o.t.toLowerCase();if(o.t.length<4||SW.has(lw)||/^\d+$/.test(lw)||(ix===0&&T.length>3))return;let sc=an.w.get(lw)||0;if(/^\p{Lu}/u.test(o.t)&&ix>0)sc*=1.3;if(!best||sc>best.sc)best={...o,ix,sc}});
+ if(!best||best.sc<=0)return null;let {i,e,ix}=best;const capd=t=>/^\p{Lu}/u.test(t);
+ if(capd(T[ix].t)&&ix>0){let k=ix+1;while(k<T.length&&capd(T[k].t)&&s.slice(e,T[k].i)===' '){e=T[k].e;k++}}
+ return{term:s.slice(i,e)}}
+const termPool=an=>[...new Set([...an.terms.slice(0,70).map(an.form),...[...an.phrases.keys()].slice(0,30)])];
+function distract(ans,sent,pool){const sl=sent.toLowerCase(),a=ans.toLowerCase(),wc=ans.split(/\s+/).length,cp=/^\p{Lu}/u.test(ans);
+ const c=pool.filter(x=>{const l=x.toLowerCase();return l!==a&&!sl.includes(l)&&!a.includes(l)&&!l.includes(a)});
+ const out=rnd(c.filter(x=>x.split(/\s+/).length===wc&&/^\p{Lu}/u.test(x)===cp)).slice(0,3);for(const x of rnd(c)){if(out.length>=3)break;if(!out.includes(x))out.push(x)}
+ return out.length>=3?out:null}
+function mask(s,term){return s.replace(new RegExp('(?<![\\p{L}\\p{N}])'+esc(term)+'(?![\\p{L}\\p{N}])','giu'),'_____')}
+function cloze(i,an,pool){const s=an.sents[i];if(s.length>260)return null;const b=pickBlank(s,an);if(!b)return null;const m=mask(s,b.term);if(!m.includes('_____'))return null;return{i,s,term:b.term,masked:m,pool}}
+function summarize(text,len){const an=analyze(text);
+ if(!an.sents.length)return '## Ringkasan\n- Materi terlalu pendek atau tidak berisi kalimat lengkap.';
+ const k=Math.min(an.sents.length,{singkat:4,sedang:8,detail:14}[len]||8);
+ const idx=an.sents.map((_,i)=>i).sort((a,b)=>an.score[b]-an.score[a]).slice(0,k).sort((a,b)=>a-b);
+ const bold=s=>{const b=pickBlank(s,an);return b?s.replace(new RegExp('(?<![\\p{L}\\p{N}])'+esc(b.term)+'(?![\\p{L}\\p{N}])','iu'),m=>'**'+m+'**'):s};
+ let o='## Ringkasan\n'+idx.map(i=>'- '+bold(an.sents[i])).join('\n');
+ if(len!=='singkat'){const defs=an.sents.map(defOf).filter(Boolean);const ts=[];
+  for(const d of defs){if(ts.length>=8)break;ts.push('- **'+d.term+'**: '+short(d.def))}
+  for(const t of an.terms){if(ts.length>=(len==='detail'?10:6))break;const f=an.form(t);if(!ts.some(x=>x.toLowerCase().includes(f.toLowerCase())))ts.push('- **'+f+'**')}
+  if(ts.length)o+='\n\n## Istilah Penting\n'+ts.join('\n')}
+ const key=an.sents.map((_,i)=>i).sort((a,b)=>an.score[b]-an.score[a]).slice(0,3);
+ return o+'\n\n## Poin Kunci\n'+key.map(i=>'- '+(an.sents[i].length>170?an.sents[i].slice(0,170).replace(/\s\S*$/,'')+'…':an.sents[i])).join('\n')}
+function flashcards(text,n){const an=analyze(text),lg=lang(text),pool=termPool(an),cards=[],seen=new Set(),add=(f,b)=>{const k=f.toLowerCase();if(!seen.has(k)){seen.add(k);cards.push({front:f,back:b})}};
+ const order=an.sents.map((_,i)=>i).sort((a,b)=>an.score[b]-an.score[a]);
+ for(const i of order){const d=defOf(an.sents[i]);if(d)add(lg==='en'?`What is ${d.term}?`:`Apa yang dimaksud dengan ${d.term}?`,d.sent)}
+ for(const i of order){if(cards.length>=n*2)break;const c=cloze(i,an,pool);if(c)add((lg==='en'?'Fill in the blank: ':'Lengkapi: ')+'"'+c.masked+'"',c.term+' — '+c.s)}
+ for(const t of an.terms){const f=an.form(t),i=order.find(j=>an.sents[j].toLowerCase().includes(t));if(i!==undefined)add((lg==='en'?'Explain: ':'Jelaskan: ')+f,an.sents[i])}
+ if(cards.length<2)throw new Error('Materi terlalu pendek untuk membuat flashcard.');
+ const defC=cards.filter(c=>/^(Apa yang dimaksud|What is)/.test(c.front)),rest=cards.filter(c=>!defC.includes(c));
+ return [...defC.slice(0,Math.ceil(n*.5)),...rest,...defC.slice(Math.ceil(n*.5))].slice(0,n)}
+function quiz(text,n){const an=analyze(text),lg=lang(text),pool=termPool(an);
+ if(an.sents.length<3)throw new Error('Materi terlalu pendek untuk membuat soal (minimal beberapa kalimat lengkap).');
+ const order=an.sents.map((_,i)=>i).sort((a,b)=>an.score[b]-an.score[a]),defs=[];order.forEach(i=>{const d=defOf(an.sents[i]);if(d)defs.push({...d,i})});
+ const used=new Set(),out=[],from=lg==='en'?'From the material: ':'Dari materi: ';
+ const dq=d=>{const others=rnd(defs.filter(x=>x!==d&&x.term.toLowerCase()!==d.term.toLowerCase()&&short(x.def)!==short(d.def))).slice(0,3);if(others.length<3)return null;const o=rnd([d,...others]);return{q:lg==='en'?`What is meant by ${d.term}?`:`Apa yang dimaksud dengan ${d.term}?`,options:o.map(x=>short(x.def)),answer:o.indexOf(d),explain:from+d.sent}};
+ const nDef=defs.length>=4?Math.min(defs.length,Math.ceil(n*.4)):0;
+ for(const d of defs){if(out.length>=nDef)break;const q=dq(d);if(q){out.push(q);used.add(d.i)}}
+ for(const i of order){if(out.length>=n)break;if(used.has(i))continue;const c=cloze(i,an,pool);if(!c)continue;const d=distract(c.term,c.s,pool);if(!d)continue;const o=rnd([c.term,...d]);out.push({q:(lg==='en'?'Complete the sentence: ':'Lengkapi kalimat berikut: ')+'"'+c.masked+'"',options:o,answer:o.indexOf(c.term),explain:from+c.s});used.add(i)}
+ for(const d of defs){if(out.length>=n)break;if(used.has(d.i))continue;const q=dq(d);if(q){out.push(q);used.add(d.i)}}
+ if(!out.length)throw new Error('Tidak bisa membuat soal dari materi ini. Coba materi yang lebih panjang atau pilih AI lain di ⚙️.');
+ return rnd(out).slice(0,n)}
+function digest(text){const an=analyze(text),notes=[],seen=new Set();
+ for(const t of an.terms){if(notes.length>=8)break;const idx=an.sents.map((_,i)=>i).filter(i=>an.stoks[i].includes(t)).sort((a,b)=>an.score[b]-an.score[a]).slice(0,3);if(!idx.length)continue;
+  const key=idx.join();if(seen.has(key))continue;seen.add(key);notes.push({topic:cap(an.form(t)),facts:idx.map(i=>an.sents[i].slice(0,220))})}
+ return{notes}}
+function quizAnalysis(p){const groups=new Map(),types={};
+ for(const l of p.split('\n')){const m=l.match(/^(BENAR|SALAH|KOSONG) \| (.*) \| jawaban benar: (.*)$/);if(!m)continue;const ok=m[1]==='BENAR',q=m[2],a=m[3];let topic,fact,type;
+  const d=q.match(/(?:dimaksud dengan|meant by) (.+)\?$/);
+  if(d){topic=d[1];type='definisi';fact=topic+': '+a}else{type='melengkapi kalimat';topic=a.length<=40?a:(content(q)[0]||'Umum');const sent=(q.match(/"([\s\S]*)"/)||[])[1];fact=sent?sent.replace('_____',a):topic}
+  topic=cap(topic);const g=groups.get(topic)||{topic,correct:0,total:0,facts:[]};g.total++;if(ok)g.correct++;else g.facts.push(fact.slice(0,220));groups.set(topic,g);
+  const t=types[type]||(types[type]={c:0,n:0});t.n++;if(!ok)t.c++}
+ const patterns=[];for(const [k,v] of Object.entries(types)){patterns.push(`Soal bertipe ${k} muncul ${v.n} kali`);if(v.n>=2&&v.c/v.n>=.5)patterns.push(`Sering salah pada soal ${k}`)}
+ return{notes:[...groups.values()],patterns}}
+function chat(prompt){
+ const qm=prompt.lastIndexOf('\nPelajar: '),q=qm>=0?prompt.slice(qm+10).trim():'';
+ const a=prompt.indexOf('CUPLIKAN MATERI:\n'),b=prompt.indexOf('\n\nRIWAYAT:'),body=a>=0?prompt.slice(a+17,b>a?b:undefined):'';
+ const snips=[];body.split(/\n\n(?=\[\d+\] \()/).forEach(p=>{const m=p.match(/^\[(\d+)\] \(([^)]*)\) ([\s\S]*)$/);if(m)snips.push({n:+m[1],text:m[3]})});
+ if(!snips.length)return 'Belum ada materi. Unggah file atau tempel teks materi terlebih dahulu, lalu tanyakan lagi.';
+ const lg=lang(body),cand=[];snips.forEach(s=>sentences(s.text).forEach(x=>cand.push({n:s.n,s:x,t:content(x).map(w=>w.slice(0,6))})));
+ const uq=[...new Set(content(q).map(w=>w.slice(0,6)))];
+ if(!uq.length)return 'Silakan ajukan pertanyaan yang lebih spesifik tentang materi.';
+ const N=Math.max(cand.length,1),wt=new Map(uq.map(k=>[k,Math.log(1+N/(1+cand.filter(c=>c.t.includes(k)).length))]));
+ const asksDef=/\b(apa itu|apa yang dimaksud|pengertian|definisi|what is|define)\b/i.test(q);
+ const sc=cand.map(c=>{let v=0;for(const k of uq)if(c.t.includes(k))v+=wt.get(k);if(v>0&&asksDef&&defOf(c.s))v+=1;return{...c,v}}).filter(c=>c.v>0).sort((x,y)=>y.v-x.v);
+ if(!sc.length)return 'Saya tidak menemukan jawaban pertanyaan itu di materi yang tersedia. (Mesin lokal hanya menjawab dari isi materi; pilih AI lain di ⚙️ untuk penjelasan di luar materi.)';
+ const top=sc.filter(c=>c.v>=sc[0].v*.4).filter((c,i,arr)=>arr.findIndex(z=>z.s===c.s)===i).slice(0,3);
+ return (lg==='en'?'Based on the material:\n':'Berdasarkan materi:\n')+top.map(c=>'- '+c.s+' ['+c.n+']').join('\n')}
+function reflect(p){const qs=[...p.matchAll(/^Pelajar: (.*)$/gm)].map(m=>m[1]),cnt=new Map();qs.forEach(q=>content(q).forEach(w=>cnt.set(w,(cnt.get(w)||0)+1)));
+ const notes=[...cnt.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3).map(([w,c])=>({topic:cap(w),facts:[],mastery:c>1?40:55})),pat=[],all=qs.join(' ').toLowerCase();
+ if(/\b(apa itu|apa yang dimaksud|pengertian|what is)\b/.test(all))pat.push('Sering bertanya definisi atau pengertian');
+ if(/\b(mengapa|kenapa|why)\b/.test(all))pat.push('Sering bertanya alasan atau sebab');
+ if(/\b(bagaimana|cara|how)\b/.test(all))pat.push('Sering bertanya cara atau proses');
+ return{notes,patterns:pat}}
+function selfEval(p){let j;try{j=JSON.parse(p.slice(p.indexOf('DATA:\n')+6))}catch(e){j={notes:[],patterns:[]}}
+ const m=new Map();for(const n of j.notes||[]){const k=String(n.topic||'').trim().toLowerCase();if(!k)continue;const g=m.get(k)||{topic:n.topic,facts:[],mastery:n.mastery,c:0};for(const f of n.facts||[])if(!g.facts.some(x=>x.toLowerCase()===String(f).toLowerCase()))g.facts.push(f);g.mastery=Math.round((g.mastery*g.c+(n.mastery||50))/(g.c+1));g.c++;m.set(k,g)}
+ const notes=[...m.values()].slice(0,80).map(g=>({topic:g.topic,facts:g.facts.slice(-12),mastery:g.mastery})),weak=[...notes].sort((a,b)=>a.mastery-b.mastery).filter(n=>n.mastery<60).slice(0,3),avg=notes.length?Math.round(notes.reduce((a,n)=>a+n.mastery,0)/notes.length):0;
+ return{notes,summary:`Ada ${notes.length} topik dengan rata-rata penguasaan ${avg}%.`+(weak.length?` Topik terlemah: ${weak.map(w=>w.topic).join(', ')}.`:' Belum ada topik yang lemah.'),
+  advice:weak.length?weak.map(w=>`Ulangi topik "${w.topic}" (penguasaan ${w.mastery}%) dengan flashcard dan latihan soal.`):['Pertahankan dengan latihan soal rutin dan ulangi materi secara berkala.'],patterns:(j.patterns||[]).slice(-40)}}
+function run(prompt){const head=prompt.slice(0,120),after=m=>{const i=prompt.indexOf(m);return i<0?'':prompt.slice(i+m.length)},num=re=>+((prompt.slice(0,200).match(re)||[])[1]||10);
+ if(head.startsWith('Translate these'))throw new Error('Mesin lokal tidak bisa menerjemahkan antarmuka. Pilih AI lain di ⚙️ untuk terjemahan, atau tetap pakai Bahasa Indonesia.');
+ if(head.includes('Balas hanya dengan kata: OK'))return 'OK';
+ if(head.startsWith('Kamu tutor pribadi'))return chat(prompt);
+ if(head.startsWith('Analisis hasil latihan'))return JSON.stringify(quizAnalysis(prompt));
+ if(head.startsWith('Kamu mengevaluasi diri'))return JSON.stringify(reflect(prompt));
+ if(head.startsWith('Evaluasi basis pengetahuan'))return JSON.stringify(selfEval(prompt));
+ if(head.startsWith('Dari materi berikut, ekstrak'))return JSON.stringify(digest(prompt.replace(/^[\s\S]*?MATERI \([^)]*\):\n/,'')));
+ if(head.includes('soal pilihan ganda'))return JSON.stringify(quiz(after('MATERI:\n'),Math.min(40,num(/tepat (\d+)/))));
+ if(head.includes('flashcard'))return JSON.stringify(flashcards(after('MATERI:\n'),Math.min(40,num(/tepat (\d+)/))));
+ if(head.includes('Ringkas materi')){const l=/sangat ringkas/.test(prompt.slice(0,200))?'singkat':/detail/.test(prompt.slice(0,200))?'detail':'sedang';return summarize(after('MATERI:\n'),l)}
+ return 'Mesin lokal tidak mengenali permintaan ini.'}
+return{run,analyze,sentences,quiz,flashcards,summarize,chat,defOf}})();
+async function localCall(input,opts={}){const text=LocalAI.run(input.split('\n\n[IMPORTANT')[0]);
+ if(opts.onText){const parts=text.match(/[\s\S]{1,90}/g)||[];let acc='';for(const p of parts){acc+=p;opts.onText({text:acc});await new Promise(r=>setTimeout(r,8))}}
+ return{text,truncated:false}}
+</script>
+<script>
+/* ===== Pengaturan bahasa: antarmuka (diterjemahkan AI lalu disimpan) + bahasa keluaran AI ===== */
+(function(){
+const CODES=new Set('id en af am ar as ay az ba be bg bn bo br bs ca ceb ckb co cs cy da de dv dz el eo es et eu fa fi fil fj fo fr fy ga gd gl gn gu ha haw he hi hmn hr ht hu hy ig is it iu ja jv ka kk kl km kn ko ku ky la lb lo lt lv mg mi mk ml mn mr ms mt my ne nl no ny oc om or pa pl ps pt qu ro ru rw sa sd si sk sl sm sn so sq sr st su sv sw ta te tg th ti tk tl tn to tr tt ug uk ur uz vi wo xh yi yo zh-Hans zh-Hant zu ab ak an av ce cr cv ee ff ik io kg ki kv kw lg li ln lu mh na nd nv oj os pi rm rn sc se sg ss ty ve wa za yue mai bho kok doi mni sat sah ast scn vec ilo war ban min ace bug ts lad nso tpi ln bm tw sco gv ie oc'.split(' '));
+const LK='study_ai_lang',RTL=new Set(['ar','he','fa','ur','ps','sd','ug','yi','dv','ckb']),AT=['placeholder','title','aria-label'];
+const nativePrompt=window.prompt.bind(window),_s=sample,_sj=sample.json;
+let L=null;try{L=JSON.parse(localStorage.getItem(LK))}catch(e){}if(!L||!L.code)L={code:'id',name:'Indonesian',label:'Indonesia',dir:'ltr'};
+let cache={},running=false,tmr=null,total=0,done=0,hadErr=false;const pending=new Set(),failed={},orig=new WeakMap(),aorig=new WeakMap();
+const loadCache=()=>{try{cache=JSON.parse(localStorage.getItem('study_ai_tr_'+L.code)||'{}')}catch(e){cache={}}},saveCache=()=>{try{localStorage.setItem('study_ai_tr_'+L.code,JSON.stringify(cache))}catch(e){}};
+const saveL=()=>{try{localStorage.setItem(LK,JSON.stringify(L))}catch(e){}};
+
+/* 1) Bahasa keluaran AI: instruksi ditambahkan ke setiap permintaan */
+const note=()=>L.code==='id'?'':`\n\n[IMPORTANT, overrides any earlier instruction about output language: write ALL natural-language output (answers, summaries, flashcard texts, quiz questions, options and explanations, topic names, notes, advice) in ${L.name}. Keep JSON keys, structure and numeric fields exactly as specified.]`;
+sample=(i,o)=>_s(i+note(),o);sample.json=(i,o)=>_sj(i+note(),o);
+
+/* 2) Daftar bahasa dunia (nama asli + Inggris, dari Intl.DisplayNames) */
+const en=new Intl.DisplayNames(['en'],{type:'language'}),opts=[];
+const FB={ba:'Bashkir',bo:'Tibetan',dz:'Dzongkha',fj:'Fijian',iu:'Inuktitut',kl:'Kalaallisut',ab:'Abkhazian',av:'Avaric',ce:'Chechen',cr:'Cree',cv:'Chuvash',ff:'Fula',ik:'Inupiaq',io:'Ido',kg:'Kongo',ki:'Kikuyu',kv:'Komi',kw:'Cornish',li:'Limburgish',lu:'Luba-Katanga',mh:'Marshallese',na:'Nauru',nd:'Northern Ndebele',nv:'Navajo',oj:'Ojibwe',os:'Ossetian',pi:'Pali',rn:'Kirundi',sc:'Sardinian',se:'Northern Sami',sg:'Sango',ss:'Swati',ty:'Tahitian',ve:'Venda',za:'Zhuang'};
+for(const c of CODES){try{let e;try{e=en.of(c)}catch(_){}const fb=!e||e===c;if(fb)e=FB[c];if(!e)continue;let n;try{n=fb?e:new Intl.DisplayNames([c],{type:'language'}).of(c)}catch(_){n=e}
+ n=n?n.charAt(0).toLocaleUpperCase(c)+n.slice(1):e;opts.push({code:c,name:e,label:n.toLowerCase()!==e.toLowerCase()?`${n} (${e})`:e,dir:RTL.has(c.split('-')[0])?'rtl':'ltr'})}catch(err){}}
+opts.sort((a,b)=>a.name.localeCompare(b.name));
+const sels=()=>['lg','lg2'].map(i=>document.getElementById(i)).filter(Boolean);
+function fillSel(){sels().forEach(s=>{s.innerHTML=opts.map(o=>`<option value="${o.code}">${esc(o.label)}</option>`).join('')+(L.custom?`<option value="${esc(L.code)}">${esc(L.label||L.name)}</option>`:'')+'<option value="__custom">🌐 Other… / Lainnya…</option>';s.value=L.code;s.onchange=()=>pick(s.value,s)})}
+function pick(v,sel){
+ if(v==='__custom'){const n=(nativePrompt('Language name (any language in the world) / Nama bahasa (bahasa apa pun):')||'').trim();if(!n){sel.value=L.code;return}
+  return setLang({code:'x-'+n.toLowerCase().replace(/[^\p{L}\p{N}]+/gu,'_').slice(0,30),name:n,label:n,dir:'ltr',custom:true})}
+ const o=opts.find(x=>x.code===v)||(L.custom&&v===L.code?L:null);if(o)setLang({code:o.code,name:o.name,label:o.label,dir:o.dir,custom:!!o.custom,dirSet:o.dirSet})}
+
+/* 3) Penerjemah antarmuka: menelusuri teks di halaman, menerjemahkan lewat AI per batch, hasil disimpan */
+const SK='#so,.m,.fs,.opt,.nt,.tag,[data-nt]',skipC=el=>!!(el.closest&&el.closest(SK)),skipT=el=>!!(el.closest&&el.closest(SK+',script,style,textarea,option'));
+function xl(s){const lead=s.match(/^\s*/)[0],trail=s.match(/\s*$/)[0],core=s.trim();if(!/\p{L}/u.test(core))return null;
+ const nums=[],t=core.replace(/\d+(?:[.,:]\d+)*/g,m=>{nums.push(m);return '{'+(nums.length-1)+'}'}),tr=cache[t];
+ if(tr===undefined){queue(t);return null}return lead+tr.replace(/\{(\d+)\}/g,(m,i)=>nums[i]!==undefined?nums[i]:m)+trail}
+function doNode(n){const e=orig.get(n);
+ if(L.code==='id'){if(e&&n.data===e.o)n.data=e.s;orig.delete(n);return}
+ const src=e&&n.data===e.o?e.s:n.data,out=xl(src);
+ if(out===null){if(e&&n.data===e.o)n.data=e.s;orig.delete(n);return}
+ orig.set(n,{s:src,o:out});if(out!==n.data)n.data=out}
+function doAttrs(el){if(skipC(el))return;for(const a of AT){if(!el.hasAttribute(a))continue;const m=aorig.get(el)||{},e=m[a],cur=el.getAttribute(a);
+ if(L.code==='id'){if(e&&cur===e.o)el.setAttribute(a,e.s);delete m[a];continue}
+ const src=e&&cur===e.o?e.s:cur,out=xl(src);
+ if(out===null){if(e&&cur===e.o)el.setAttribute(a,e.s);delete m[a];continue}
+ m[a]={s:src,o:out};aorig.set(el,m);if(out!==cur)el.setAttribute(a,out)}}
+function scan(root){
+ if(root.nodeType===3){if(root.parentElement&&!skipT(root.parentElement))doNode(root);return}
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),ns=[];while(w.nextNode()){const n=w.currentNode;if(n.parentElement&&!skipT(n.parentElement))ns.push(n)}ns.forEach(doNode);
+ if(root.nodeType===1){const els=[...root.querySelectorAll('[placeholder],[title],[aria-label]')];if(root.matches('[placeholder],[title],[aria-label]'))els.push(root);els.forEach(doAttrs)}}
+const badge=document.createElement('div');badge.id='trb';badge.setAttribute('data-nt','');badge.style.cssText='position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--pr);color:#fff;padding:6px 12px;border-radius:20px;font-size:.85rem;z-index:60;display:none;max-width:80vw';document.body.appendChild(badge);
+const bd=(t,err)=>{badge.style.display=t?'block':'none';badge.textContent=t||'';badge.style.background=err?'var(--no)':'var(--pr)'};badge.onclick=()=>bd('');
+const holders=s=>(String(s).match(/\{\d+\}/g)||[]).sort().join();
+function queue(t){if((failed[t]||0)>=2||cache[t]!==undefined)return;pending.add(t);clearTimeout(tmr);tmr=setTimeout(run,300)}
+const tprompt=(arr,l)=>`Translate these user-interface strings from Indonesian to ${l.name}. Rules: keep placeholders like {0}, {1} exactly as they are; keep emojis, symbols and punctuation style; keep the product name "Study AI" and technical names (API, JSON, PDF, DOCX, TXT, MD, AI, URL, CORS, GB, MB, KB, Ollama, Groq, OpenAI, OpenRouter, Gemini) unchanged; make labels short and natural for buttons and menus. Return ONLY a JSON array of strings, same length and order as the input (${arr.length} items).\n\nINPUT:\n${JSON.stringify(arr)}`;
+async function run(){if(running||!pending.size)return;if(typeof okCfg==='function'&&!okCfg(getCfg()))return;
+ running=true;hadErr=false;const lang=L;total=pending.size;done=0;
+ try{while(pending.size&&L===lang){const batch=[...pending].slice(0,50);batch.forEach(b=>pending.delete(b));bd(`🌐 ${done}/${total}`);let res;
+   try{res=await _sj(tprompt(batch,lang),{cache:false})}catch(e){hadErr=true;pending.clear();batch.forEach(b=>failed[b]=2);bd('⚠️ '+String(e.message||e).slice(0,90),true);break}
+   if(L!==lang)break;
+   if(Array.isArray(res)&&res.length===batch.length)batch.forEach((b,i)=>{const v=String(res[i]==null?'':res[i]).trim();if(v&&holders(b)===holders(v))cache[b]=v;else failed[b]=(failed[b]||0)+1});
+   else batch.forEach(b=>failed[b]=(failed[b]||0)+1);
+   done+=batch.length;saveCache();
+   if(lang.custom&&!lang.dirSet){if(/[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/.test(Object.values(cache).join(''))){L.dir='rtl';document.documentElement.dir='rtl'}L.dirSet=true;saveL()}
+   scan(document.body)}
+  if(L===lang&&!hadErr)bd('')}
+ finally{running=false;if(pending.size&&L===lang&&!hadErr)tmr=setTimeout(run,300)}}
+function setLang(l){L=l;saveL();const h=document.documentElement;h.lang=l.custom?'und':l.code.split('-')[0];h.dir=l.dir||'ltr';loadCache();pending.clear();Object.keys(failed).forEach(k=>delete failed[k]);bd('');fillSel();scan(document.body);
+ if(L.code!=='id'&&pending.size&&typeof okCfg==='function'&&!okCfg(getCfg()))openCfg()}
+window.onAiReady=()=>{Object.keys(failed).forEach(k=>delete failed[k]);scan(document.body);run()};
+for(const f of ['confirm','alert']){const o=window[f].bind(window);window[f]=m=>o(typeof m==='string'&&L.code!=='id'?(xl(m)||m):m)}
+new MutationObserver(rs=>{if(L.code==='id')return;for(const r of rs){
+ if(r.type==='characterData'){const n=r.target;if(n.parentElement&&!skipT(n.parentElement))doNode(n)}
+ else if(r.type==='attributes')doAttrs(r.target);
+ else r.addedNodes.forEach(n=>{if(n.nodeType===3||n.nodeType===1)scan(n)})}}).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:AT});
+loadCache();fillSel();document.documentElement.dir=L.dir||'ltr';if(L.code!=='id'){document.documentElement.lang=L.custom?'und':L.code.split('-')[0];scan(document.body)}
+})();
+</script>
+</body></html>
